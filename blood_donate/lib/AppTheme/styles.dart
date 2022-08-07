@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 // App Colors
 
 Color darkGreen = const Color.fromRGBO(0, 109, 95, 1);
+Color midGreen = const Color.fromARGB(255, 118, 196, 185);
 
 const textWhite = Colors.white;
 const offWhite = Color.fromARGB(255, 248, 255, 255);

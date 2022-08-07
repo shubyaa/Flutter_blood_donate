@@ -1,8 +1,13 @@
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 // ignore: depend_on_referenced_packages
+
+var screenHeight;
+var navHeight;
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,8 +17,13 @@ class HomePage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
+    screenHeight = height;
+
     double appbarHeight = height * 0.25;
-    double bottomNavHeight = height * 0.115;
+    double bottomNavHeight = height * 0.1148;
+    double listHeight = height - (appbarHeight + bottomNavHeight);
+
+    navHeight = bottomNavHeight;
 
     const String url = "https://www.woolha.com/media/2020/03/eevee.png";
     return Scaffold(
@@ -33,74 +43,86 @@ class HomePage extends StatelessWidget {
                 color: darkGreen,
                 height: appbarHeight,
                 width: width,
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   textDirection: TextDirection.ltr,
                   children: [
-                    Wrap(
-                      direction: Axis.vertical,
-                      alignment: WrapAlignment.spaceBetween,
-                      children: [
-                        Wrap(
-                          // spacing: 0,
-                          alignment: WrapAlignment.spaceEvenly,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: circularImage(),
-                            ),
-                            Text(
-                              'Welcome, Amit Rao',
-                              softWrap: true,
-                              textDirection: TextDirection.ltr,
-                              style: titleTextStyle,
-                            ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: const Icon(
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Row(
+                            // spacing: 0,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              circularImage(),
+                              Text(
+                                'Welcome, Shubham',
+                                overflow: TextOverflow.clip,
+                                textWidthBasis: TextWidthBasis.longestLine,
+                                softWrap: true,
+                                textDirection: TextDirection.ltr,
+                                style: titleTextStyle,
+                              ),
+                              const Icon(
                                 Icons.people,
                                 size: 30,
                                 color: Color.fromRGBO(239, 252, 250, 1),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
 
-                        // ignore: sized_box_for_whitespace
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Blood Group Donating',
-                              textAlign: TextAlign.start,
-                              textDirection: TextDirection.ltr,
-                              style: smallText,
-                            ),
-                            Text(
-                              'A+',
-                              textAlign: TextAlign.start,
-                              textDirection: TextDirection.ltr,
-                              style: bloodGroupText,
-                            ),
-                            Text(
-                              'Availability',
-                              textAlign: TextAlign.start,
-                              textDirection: TextDirection.ltr,
-                              style: smallText,
-                            ),
-                          ],
-                        ),
-                      ],
+                          // ignore: sized_box_for_whitespace
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Blood Group Donating',
+                                    textAlign: TextAlign.center,
+                                    textDirection: TextDirection.ltr,
+                                    style: smallText,
+                                  ),
+                                  Text(
+                                    'A+',
+                                    textAlign: TextAlign.center,
+                                    textDirection: TextDirection.ltr,
+                                    style: bloodGroupText,
+                                  ),
+                                  Text(
+                                    'Availability',
+                                    textAlign: TextAlign.center,
+                                    textDirection: TextDirection.ltr,
+                                    style: smallText,
+                                  ),
+                                ],
+                              ),
+                              FlutterSwitch(
+                                height: 28,
+                                width: 55,
+                                activeColor: offWhite,
+                                toggleColor: darkGreen,
+                                value: true,
+                                onToggle: (value) {},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
               Container(
                 width: width,
-                height: height - appbarHeight - bottomNavHeight,
+                height: listHeight,
                 color: offWhite,
                 padding: const EdgeInsets.fromLTRB(5, 18, 5, 0),
                 child: SingleChildScrollView(

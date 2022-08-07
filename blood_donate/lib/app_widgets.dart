@@ -4,13 +4,15 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:blood_donate/AppTheme/styles.dart';
+import 'package:blood_donate/home.dart';
 
 // import 'package:google_fonts/google_fonts.dart';
 
 // params
 
 double cardTitleHeight = 20;
-double bottomNavHeight = 65;
+double bottomNavHeight = navHeight;
 
 TextStyle titleStyle = GoogleFonts.lato(
   color: const Color.fromARGB(190, 15, 56, 49),
@@ -24,8 +26,8 @@ const textStyle = TextStyle(
   fontWeight: FontWeight.normal,
 );
 
-Color leftBarColor = Color.fromRGBO(0, 109, 95, 1);
-Color rightBarColor = Color.fromARGB(255, 232, 0, 0);
+const leftBarColor = Color.fromRGBO(0, 109, 95, 1);
+const rightBarColor = Color.fromARGB(255, 232, 0, 0);
 double width = 7;
 
 int touchedGroupIndex = -1;
@@ -66,7 +68,7 @@ class LineCharts extends StatelessWidget {
     const cuttoffValue = 0.0;
 
     return Container(
-      width: 400,
+      // width: 400,
       height: 250,
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(15),
@@ -371,7 +373,6 @@ Widget cardTitle(String text) {
 // BOTTOM NAVIGATON
 Widget bottomNavigationBar() {
   return SizedBox(
-    height: bottomNavHeight,
     child: BottomNavigationBar(
       showSelectedLabels: false,
       showUnselectedLabels: false,
@@ -380,7 +381,7 @@ Widget bottomNavigationBar() {
       unselectedItemColor: const Color.fromRGBO(18, 96, 86, 0.5),
       selectedItemColor: const Color.fromRGBO(18, 96, 86, 1),
       type: BottomNavigationBarType.fixed,
-      backgroundColor: const Color.fromRGBO(139, 227, 216, 100),
+      backgroundColor: midGreen,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
         BottomNavigationBarItem(icon: Icon(Icons.my_location), label: ''),
