@@ -12,7 +12,6 @@ import 'package:blood_donate/home.dart';
 // params
 
 double cardTitleHeight = 20;
-double bottomNavHeight = navHeight;
 
 TextStyle titleStyle = GoogleFonts.lato(
   color: const Color.fromARGB(190, 15, 56, 49),
@@ -456,11 +455,13 @@ class ResopnsiveWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth < 768) {
-        return mobile;
-      } else {
-        return landscape;
-      }
+      // if (constraints.maxWidth < 768) {
+      //   return mobile;
+      // } else {
+      //   return landscape;
+      // }
+
+      return mobile;
     });
   }
 }

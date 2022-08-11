@@ -1,13 +1,12 @@
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 // ignore: depend_on_referenced_packages
 
 var screenHeight;
-var navHeight;
+// var navHeight;
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,14 +15,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
     screenHeight = height;
 
     double appbarHeight = height * 0.25;
-    double bottomNavHeight = height * 0.1148;
-    double listHeight = height - (appbarHeight + bottomNavHeight);
+    double listHeight = height * 0.68;
+    double bottomNavHeight = height * 0.07;
+    // double listHeight = height - kBottomNavigationBarHeight;
 
-    navHeight = bottomNavHeight;
+    // navHeight = bottomNavHeight;
 
     const String url = "https://www.woolha.com/media/2020/03/eevee.png";
     return Scaffold(
@@ -54,13 +53,13 @@ class HomePage extends StatelessWidget {
                         children: [
                           Row(
                             // spacing: 0,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               circularImage(),
                               Text(
                                 'Welcome, Shubham',
-                                overflow: TextOverflow.clip,
+                                overflow: TextOverflow.ellipsis,
                                 textWidthBasis: TextWidthBasis.longestLine,
                                 softWrap: true,
                                 textDirection: TextDirection.ltr,
@@ -122,9 +121,9 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 width: width,
-                height: listHeight,
                 color: offWhite,
-                padding: const EdgeInsets.fromLTRB(5, 18, 5, 0),
+                padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                height: listHeight,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -174,12 +173,17 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              Container(
+                width: width,
+                height: bottomNavHeight,
+                child: bottomNavigationBar(),
+              )
             ],
           ),
         ),
       ),
 
-      bottomNavigationBar: bottomNavigationBar(),
+      // bottomNavigationBar: bottomNavigationBar(),
     );
   }
 }
