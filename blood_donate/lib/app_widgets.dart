@@ -369,28 +369,6 @@ Widget cardTitle(String text) {
   );
 }
 
-// BOTTOM NAVIGATON
-Widget bottomNavigationBar() {
-  return SizedBox(
-    child: BottomNavigationBar(
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      iconSize: 35,
-      elevation: 0,
-      unselectedItemColor: const Color.fromRGBO(18, 96, 86, 0.5),
-      selectedItemColor: const Color.fromRGBO(18, 96, 86, 1),
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: midGreen,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.my_location), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-      ],
-    ),
-  );
-}
-
 // Circular Image
 Widget circularImage() {
   return const CircleAvatar(
