@@ -385,6 +385,88 @@ Widget circularImage() {
 
 // List Card Widget
 
+class DonorCard extends StatefulWidget {
+  final Icon icon;
+  final String name;
+  final String age;
+  final String sex;
+  final String blood;
+
+  const DonorCard(
+      {super.key,
+      required this.icon,
+      required this.name,
+      required this.age,
+      required this.sex,
+      required this.blood});
+
+  @override
+  State<StatefulWidget> createState() => DonorCardView();
+}
+
+class DonorCardView extends State<DonorCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: offWhite,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      margin: const EdgeInsets.all(10),
+      elevation: 10,
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: darkGreen,
+                        size: 100,
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Name: ${widget.name}",
+                          style: donorCardText,
+                        ),
+                        Text(
+                          "Sex: ${widget.sex}",
+                          style: donorCardText,
+                        ),
+                        Text(
+                          "Age: ${widget.age}",
+                          style: donorCardText,
+                        ),
+                        Text(
+                          "Blood Group: ${widget.blood}",
+                          style: donorCardText,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class ListCard extends StatefulWidget {
   final String title;
   final Widget content;
@@ -433,13 +515,22 @@ class ResopnsiveWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      // if (constraints.maxWidth < 768) {
-      //   return mobile;
-      // } else {
-      //   return landscape;
-      // }
+      if (constraints.maxWidth < 768) {
+        return mobile;
+      } else {
+        return landscape;
+      }
 
-      return mobile;
+      // return mobile;
     });
   }
 }
+
+
+// Button OnClick
+// Future onClick(context, class destination){
+//   return Navigator.push(
+//     context,
+//     MaterialPageRoute(builder: (context) => const destination()),
+//   );
+// }
