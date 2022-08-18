@@ -12,7 +12,6 @@ import 'package:blood_donate/home.dart';
 // params
 
 double cardTitleHeight = 20;
-double bottomNavHeight = navHeight;
 
 TextStyle titleStyle = GoogleFonts.lato(
   color: const Color.fromARGB(190, 15, 56, 49),
@@ -370,28 +369,6 @@ Widget cardTitle(String text) {
   );
 }
 
-// BOTTOM NAVIGATON
-Widget bottomNavigationBar() {
-  return SizedBox(
-    child: BottomNavigationBar(
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      iconSize: 35,
-      elevation: 0,
-      unselectedItemColor: const Color.fromRGBO(18, 96, 86, 0.5),
-      selectedItemColor: const Color.fromRGBO(18, 96, 86, 1),
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: midGreen,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.my_location), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-      ],
-    ),
-  );
-}
-
 // Circular Image
 Widget circularImage() {
   return const CircleAvatar(
@@ -407,6 +384,88 @@ Widget circularImage() {
 }
 
 // List Card Widget
+
+class DonorCard extends StatefulWidget {
+  final Icon icon;
+  final String name;
+  final String age;
+  final String sex;
+  final String blood;
+
+  const DonorCard(
+      {super.key,
+      required this.icon,
+      required this.name,
+      required this.age,
+      required this.sex,
+      required this.blood});
+
+  @override
+  State<StatefulWidget> createState() => DonorCardView();
+}
+
+class DonorCardView extends State<DonorCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: offWhite,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      margin: const EdgeInsets.all(10),
+      elevation: 10,
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: darkGreen,
+                        size: 100,
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Name: ${widget.name}",
+                          style: donorCardText,
+                        ),
+                        Text(
+                          "Sex: ${widget.sex}",
+                          style: donorCardText,
+                        ),
+                        Text(
+                          "Age: ${widget.age}",
+                          style: donorCardText,
+                        ),
+                        Text(
+                          "Blood Group: ${widget.blood}",
+                          style: donorCardText,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class ListCard extends StatefulWidget {
   final String title;
@@ -461,6 +520,17 @@ class ResopnsiveWidget extends StatelessWidget {
       } else {
         return landscape;
       }
+
+      // return mobile;
     });
   }
 }
+
+
+// Button OnClick
+// Future onClick(context, class destination){
+//   return Navigator.push(
+//     context,
+//     MaterialPageRoute(builder: (context) => const destination()),
+//   );
+// }
