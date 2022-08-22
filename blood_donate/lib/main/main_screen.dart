@@ -4,6 +4,7 @@ import 'package:blood_donate/app_widgets.dart';
 import 'package:blood_donate/auth.dart';
 import 'package:blood_donate/home.dart';
 import 'package:blood_donate/profile.dart';
+import 'package:blood_donate/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -21,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> pageList = [
     const HomePage(),
     ProfilePage(),
-    Login(),
+    SettingsPage(),
   ];
 
   @override
