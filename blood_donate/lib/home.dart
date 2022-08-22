@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
     screenHeight = height;
 
     double appbarHeight = height * 0.25;
-    double listHeight = height * 0.6464;
+    double listHeight = height * 0.642;
     // double listHeight = height * 0.682;
     // double bottomNavHeight = height * 0.07;
     // navHeight = bottomNavHeight;

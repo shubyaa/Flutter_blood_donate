@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //

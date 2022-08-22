@@ -503,6 +503,36 @@ class ListCardView extends State<ListCard> {
   }
 }
 
+class SettingsList extends StatelessWidget {
+  final List childCard;
+
+  const SettingsList({super.key, required this.childCard});
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      child: Card(
+        elevation: 3.0,
+        shadowColor: Colors.grey[200],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Column(
+            children: childCard
+                .map((e) => ListTile(
+                      title: Text(
+                        e.toString(),
+                        style: settingsText,
+                      ),
+                      trailing: const Icon(Icons.arrow_forward_ios),
+                      onTap: () {},
+                    ))
+                .toList()),
+      ),
+    );
+  }
+}
+
 // Responsive Widget
 
 class ResopnsiveWidget extends StatelessWidget {
