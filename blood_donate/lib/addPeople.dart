@@ -1,9 +1,17 @@
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_widgets.dart';
+import 'package:blood_donate/main/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
+class AddPeople extends StatefulWidget {
+  @override
+  State<AddPeople> createState() => _AddPeopleState();
+}
+
+class _AddPeopleState extends State<AddPeople> {
+  int pageIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,31 +21,58 @@ class ProfilePage extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: Scaffold(
+      child: SafeArea(
+        child: Scaffold(
+          floatingActionButton: Container(
+            width: 80,
+            height: 80,
+            child: FittedBox(
+              child: FloatingActionButton(
+                onPressed: () => {},
+                // shape: ,
+                backgroundColor: darkGreen,
+                child: Icon(
+                  Icons.add,
+                  size: 30,
+                  color: offWhite,
+                ),
+              ),
+            ),
+          ),
           backgroundColor: Colors.transparent,
           body: ResopnsiveWidget(
             landscape: Container(
               color: offWhite,
             ),
             mobile: Padding(
-              padding: const EdgeInsets.fromLTRB(10, 40, 10, 10),
+              padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
               child: SafeArea(
                 child: Column(
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Icon(
-                          Icons.arrow_back,
-                          size: IconSize,
-                          color: offWhite,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            size: IconSize,
+                            color: offWhite,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
                         ),
-                        Icon(
-                          Icons.group_add,
-                          color: offWhite,
-                          size: IconSize,
-                        )
+                        IconButton(
+                          icon: Icon(
+                            Icons.group_add,
+                            color: offWhite,
+                            size: IconSize,
+                          ),
+                          onPressed: () {
+                            // Navigator.pop(context);
+                          },
+                        ),
                       ],
                     ),
                     Align(
@@ -123,7 +158,9 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
