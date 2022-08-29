@@ -1,6 +1,8 @@
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_widgets.dart';
-import 'package:blood_donate/profile.dart';
+import 'package:blood_donate/addPeople.dart';
+import 'package:blood_donate/main.dart';
+import 'package:blood_donate/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,7 +60,6 @@ class HomePage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Row(
@@ -80,14 +81,12 @@ class HomePage extends StatelessWidget {
                                     onPressed: () {
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProfilePage()),
+                                        CustomPageRoute(child: AddPeople()),
                                       );
                                     },
                                     icon: Icon(
                                       Icons.people,
-                                      size: IconSize,
+                                      size: 30,
                                       color: Color.fromRGBO(239, 252, 250, 1),
                                     ),
                                   ),
@@ -96,7 +95,6 @@ class HomePage extends StatelessWidget {
 
                               // ignore: sized_box_for_whitespace
                               Row(
-                                // mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,

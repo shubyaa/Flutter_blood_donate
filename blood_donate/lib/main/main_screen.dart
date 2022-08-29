@@ -1,13 +1,12 @@
 import 'package:animations/animations.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
+import 'package:blood_donate/addPeople.dart';
 import 'package:blood_donate/app_widgets.dart';
 import 'package:blood_donate/auth.dart';
 import 'package:blood_donate/home.dart';
-import 'package:blood_donate/profile.dart';
+import 'package:blood_donate/maps.dart';
 import 'package:blood_donate/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:blood_donate/app_widgets.dart';
 
 class MainScreen extends StatefulWidget {
@@ -19,10 +18,15 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int pageIndex = 0;
+
+  // PageController pageController_ =
+  //     new PageController(initialPage: 0, keepPage: true);
+
   List<Widget> pageList = [
     const HomePage(),
-    ProfilePage(),
+    MapsPage(),
     SettingsPage(),
+    Login(),
   ];
 
   @override
@@ -30,6 +34,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       extendBody: true,
       body: PageTransitionSwitcher(
+        duration: Duration(milliseconds: 500),
         transitionBuilder: (child, primaryAnimation, secondaryAnimation) =>
             FadeThroughTransition(
           animation: primaryAnimation,
@@ -39,11 +44,9 @@ class _MainScreenState extends State<MainScreen> {
         child: pageList[pageIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: ((value) {
-          setState(() {
-            pageIndex = value;
-          });
-        }),
+        landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
+        onTap: bottomTapped,
+        enableFeedback: false,
         currentIndex: pageIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
@@ -59,9 +62,19 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
         ],
-
-        // onTap: ,
       ),
     );
+  }
+
+  // void onPageChanged(int value) {
+  //   setState(() {
+  //     pageIndex = value;
+  //   });
+  // }
+
+  void bottomTapped(int value) {
+    setState(() {
+      pageIndex = value;
+    });
   }
 }
