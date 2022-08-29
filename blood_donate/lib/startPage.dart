@@ -2,7 +2,7 @@ import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Login extends StatelessWidget {
+class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color green = const Color.fromRGBO(0, 109, 95, 1);
