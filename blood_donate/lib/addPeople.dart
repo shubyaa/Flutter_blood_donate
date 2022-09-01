@@ -45,7 +45,7 @@ class _AddPeopleState extends State<AddPeople> {
               color: offWhite,
             ),
             mobile: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+              padding: const EdgeInsets.fromLTRB(10, 40, 10, 0),
               child: SafeArea(
                 child: Column(
                   children: [
