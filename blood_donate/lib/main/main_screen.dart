@@ -7,6 +7,7 @@ import 'package:blood_donate/home.dart';
 import 'package:blood_donate/maps.dart';
 import 'package:blood_donate/login.dart';
 // import 'package:blood_donate/profile.dart';
+import 'package:blood_donate/profile.dart';
 import 'package:blood_donate/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:blood_donate/app_widgets.dart';
@@ -28,7 +29,8 @@ class _MainScreenState extends State<MainScreen> {
     const HomePage(),
     MapsPage(),
     SettingsPage(),
-    LoginPage(),
+    // LoginPage(),
+    ProfilePage(),
   ];
 
   @override

@@ -16,6 +16,11 @@ const textWhite = Colors.white;
 const offWhite = Color.fromARGB(255, 248, 255, 255);
 
 // Text Styles
+TextStyle number = GoogleFonts.lato(
+  fontSize: 30.0,
+  fontWeight: FontWeight.bold,
+  color: Color.fromRGBO(18, 96, 86, 1.0),
+);
 
 TextStyle settingsText = GoogleFonts.montserrat(
   fontSize: 20.0,
@@ -27,6 +32,15 @@ TextStyle settingsTextTitle = GoogleFonts.montserrat(
   fontSize: 25.0,
   fontWeight: FontWeight.w700,
   color: Color.fromRGBO(0, 82, 33, 0.3),
+);
+
+TextStyle usernameTitle = GoogleFonts.montserrat(
+  color: Colors.white,
+  fontSize: 25.0,
+  fontWeight: FontWeight.bold,
+  fontFeatures: [
+    const FontFeature.tabularFigures(),
+  ],
 );
 
 TextStyle appBarTitleText = GoogleFonts.montserrat(
