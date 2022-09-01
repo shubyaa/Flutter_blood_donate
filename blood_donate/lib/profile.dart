@@ -1,6 +1,8 @@
 import 'package:blood_donate/AppTheme/styles.dart';
+import 'package:blood_donate/main/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:blood_donate/main/main_screen.dart';
 
 import 'app_widgets.dart';
 
@@ -43,7 +45,7 @@ class ProfilePage extends StatelessWidget {
                                       color: offWhite,
                                     ),
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      Navigator.of(context);
                                     },
                                   ),
                                   IconButton(
@@ -195,5 +197,11 @@ class ProfilePage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+mixin _MainScreenState on StatelessWidget {
+  static Future<bool> onWillPop() {
+    return Future.value(false);
   }
 }
