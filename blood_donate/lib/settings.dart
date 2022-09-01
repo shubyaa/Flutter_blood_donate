@@ -1,7 +1,6 @@
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'app_widgets.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -12,9 +11,10 @@ class SettingsPage extends StatelessWidget {
     double appbarHeight = MediaQuery.of(context).size.height * 0.25;
     return Container(
       decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/backgrounds/settings_background.png"),
-              fit: BoxFit.cover)),
+        image: DecorationImage(
+            image: AssetImage("assets/backgrounds/settings_background.png"),
+            fit: BoxFit.cover),
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
@@ -25,19 +25,6 @@ class SettingsPage extends StatelessWidget {
               alignment: Alignment.center,
               color: Colors.red,
             ),
-            //         Container(
-            //           height: 90,
-            //           child: Card(
-            //             shape: RoundedRectangleBorder(
-            //               borderRadius: BorderRadius.circular(20.0),
-            //             ),
-            //             color: offWhite,
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // );
             mobile: Padding(
               padding: const EdgeInsets.fromLTRB(10, 40, 10, 10),
               child: Column(
@@ -47,7 +34,7 @@ class SettingsPage extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.arrow_back),
+                        icon: const Icon(Icons.arrow_back),
                         color: Colors.white,
                         iconSize: 30.0,
                       ),
@@ -76,39 +63,39 @@ class SettingsPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16.0),
                             child: Text(
                               'Account',
                               style: settingsTextTitle,
                             ),
                           ),
-                          SettingsList(childCard: [
+                          const SettingsList(childCard: [
                             "Profile",
                             "Personal Details",
                             "Location"
                           ]),
                           Padding(
-                            padding: EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16.0),
                             child: Text('Network', style: settingsTextTitle),
                           ),
-                          SettingsList(
+                          const SettingsList(
                               childCard: ["Use when Wi-Fi", "Navigation"]),
                           Padding(
-                            padding: EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16.0),
                             child: Text(
                               'Security',
                               style: settingsTextTitle,
                             ),
                           ),
-                          SettingsList(childCard: ["Availability"]),
+                          const SettingsList(childCard: ["Availability"]),
                           Padding(
-                            padding: EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16.0),
                             child: Text(
                               'Logout',
                               style: settingsTextTitle,
                             ),
                           ),
-                          SettingsList(childCard: ["Logout"]),
+                          const SettingsList(childCard: ["Logout"]),
                         ],
                       ),
                     ),
