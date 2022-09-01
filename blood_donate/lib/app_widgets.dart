@@ -555,12 +555,3 @@ class ResopnsiveWidget extends StatelessWidget {
     });
   }
 }
-
-
-// Button OnClick
-// Future onClick(context, class destination){
-//   return Navigator.push(
-//     context,
-//     MaterialPageRoute(builder: (context) => const destination()),
-//   );
-// }
