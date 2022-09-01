@@ -21,10 +21,6 @@ class HomePage extends StatelessWidget {
     screenHeight = height;
 
     double appbarHeight = height * 0.25;
-    double listHeight = height * 0.642;
-    // double listHeight = height * 0.682;
-    // double bottomNavHeight = height * 0.07;
-    // navHeight = bottomNavHeight;
 
     const String url = "https://www.woolha.com/media/2020/03/eevee.png";
     return Container(
@@ -46,104 +42,100 @@ class HomePage extends StatelessWidget {
               alignment: Alignment.center,
               color: Colors.red,
             ),
-            mobile: Expanded(
-              child: Wrap(
-                direction: Axis.vertical,
-                children: [
-                  Container(
-                    // color: darkGreen,
-                    height: appbarHeight,
-                    width: width,
-                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-                    child: Column(
-                      textDirection: TextDirection.ltr,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Row(
-                                // spacing: 0,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  circularImage(),
-                                  Text(
-                                    'Welcome, RAJ',
-                                    overflow: TextOverflow.ellipsis,
-                                    textWidthBasis: TextWidthBasis.longestLine,
-                                    softWrap: true,
-                                    textDirection: TextDirection.ltr,
-                                    style: titleTextStyle,
+            mobile: Column(
+              children: [
+                Container(
+                  height: appbarHeight,
+                  width: width,
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                  child: Column(
+                    textDirection: TextDirection.ltr,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Row(
+                              // spacing: 0,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                circularImage(),
+                                Text(
+                                  'Welcome, RAJ',
+                                  overflow: TextOverflow.ellipsis,
+                                  textWidthBasis: TextWidthBasis.longestLine,
+                                  softWrap: true,
+                                  textDirection: TextDirection.ltr,
+                                  style: titleTextStyle,
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      CustomPageRoute(child: AddPeople()),
+                                    );
+                                  },
+                                  icon: Icon(
+                                    Icons.people,
+                                    size: 30,
+                                    color: Color.fromRGBO(239, 252, 250, 1),
                                   ),
-                                  IconButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        CustomPageRoute(child: AddPeople()),
-                                      );
-                                    },
-                                    icon: Icon(
-                                      Icons.people,
-                                      size: 30,
-                                      color: Color.fromRGBO(239, 252, 250, 1),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
+                            ),
 
-                              // ignore: sized_box_for_whitespace
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Blood Group Donating',
-                                        textAlign: TextAlign.center,
-                                        textDirection: TextDirection.ltr,
-                                        style: smallText,
-                                      ),
-                                      Text(
-                                        'A+',
-                                        textAlign: TextAlign.center,
-                                        textDirection: TextDirection.ltr,
-                                        style: bloodGroupText,
-                                      ),
-                                      Text(
-                                        'Availability',
-                                        textAlign: TextAlign.center,
-                                        textDirection: TextDirection.ltr,
-                                        style: smallText,
-                                      ),
-                                    ],
-                                  ),
-                                  FlutterSwitch(
-                                    height: 28,
-                                    width: 55,
-                                    activeColor: offWhite,
-                                    toggleColor: darkGreen,
-                                    value: true,
-                                    onToggle: (value) {},
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                            // ignore: sized_box_for_whitespace
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Blood Group Donating',
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.ltr,
+                                      style: smallText,
+                                    ),
+                                    Text(
+                                      'A+',
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.ltr,
+                                      style: bloodGroupText,
+                                    ),
+                                    Text(
+                                      'Availability',
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.ltr,
+                                      style: smallText,
+                                    ),
+                                  ],
+                                ),
+                                FlutterSwitch(
+                                  height: 28,
+                                  width: 55,
+                                  activeColor: offWhite,
+                                  toggleColor: darkGreen,
+                                  value: true,
+                                  onToggle: (value) {},
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Container(
+                ),
+                Expanded(
+                  child: Container(
                     color: offWhite,
                     padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
                     width: width,
-                    height: listHeight,
+                    // height: listHeight,
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -194,8 +186,8 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
