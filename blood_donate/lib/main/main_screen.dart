@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/addPeople.dart';
 import 'package:blood_donate/app_widgets.dart';
+import 'package:blood_donate/personal_details.dart';
 import 'package:blood_donate/startPage.dart';
 import 'package:blood_donate/home.dart';
 import 'package:blood_donate/maps.dart';
@@ -30,7 +31,8 @@ class _MainScreenState extends State<MainScreen> {
     MapsPage(),
     SettingsPage(),
     // LoginPage(),
-    ProfilePage(),
+    // ProfilePage(),
+    PersonalDetails(),
   ];
 
   @override
