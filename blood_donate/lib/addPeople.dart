@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_widgets.dart';
 import 'package:blood_donate/main/main_screen.dart';
@@ -5,6 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddPeople extends StatefulWidget {
+  const AddPeople({
+    Key? key,
+  }) : super(key: key);
   @override
   State<AddPeople> createState() => _AddPeopleState();
 }

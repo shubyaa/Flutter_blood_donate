@@ -1,18 +1,29 @@
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_widgets.dart';
-import 'package:blood_donate/addPeople.dart';
+// import 'package:blood_donate/addPeople.dart';
 import 'package:blood_donate/main.dart';
 import 'package:blood_donate/main/main_screen.dart';
+import 'package:blood_donate/main/page_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:blood_donate/main/page_router.dart';
+
 // ignore: depend_on_referenced_packages
 
 var screenHeight;
 // var navHeight;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool switch_bool = true;
 
   @override
   Widget build(BuildContext context) {
@@ -70,12 +81,9 @@ class HomePage extends StatelessWidget {
                                   style: titleTextStyle,
                                 ),
                                 IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      CustomPageRoute(child: AddPeople()),
-                                    );
-                                  },
+                                  onPressed: () => context.router.push(
+                                    AddPeopleRoute(),
+                                  ),
                                   icon: Icon(
                                     Icons.people,
                                     size: 30,
@@ -118,9 +126,15 @@ class HomePage extends StatelessWidget {
                                   height: 28,
                                   width: 55,
                                   activeColor: offWhite,
+                                  inactiveColor: darkGreen,
+                                  inactiveToggleColor: offWhite,
                                   toggleColor: darkGreen,
-                                  value: true,
-                                  onToggle: (value) {},
+                                  value: switch_bool,
+                                  onToggle: ((value) {
+                                    setState(() {
+                                      switch_bool = value;
+                                    });
+                                  }),
                                 ),
                               ],
                             ),
