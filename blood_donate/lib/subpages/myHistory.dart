@@ -97,7 +97,7 @@ class _myHistoryPageState extends State<myHistoryPage> {
                               Expanded(
                                 child: AnimatedContainer(
                                   curve: Curves.easeIn,
-                                  duration: Duration(milliseconds: 200),
+                                  duration: Duration(milliseconds: 300),
                                   alignment: Alignment.center,
                                   height: double.maxFinite,
                                   decoration: BoxDecoration(
