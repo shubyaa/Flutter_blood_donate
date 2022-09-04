@@ -1,11 +1,15 @@
 // ignore_for_file: depend_on_referenced_packages
-
+import 'package:blood_donate/login.dart';
+import 'package:blood_donate/addPeople.dart';
+import 'package:blood_donate/subpages/myHistory.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
-import 'package:blood_donate/home.dart';
+
+import 'package:blood_donate/main/page_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 // import 'package:google_fonts/google_fonts.dart';
 
@@ -393,12 +397,13 @@ class DonorCard extends StatefulWidget {
   final String blood;
 
   const DonorCard(
-      {super.key,
+      {Key? key,
       required this.icon,
       required this.name,
       required this.age,
       required this.sex,
-      required this.blood});
+      required this.blood})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => DonorCardView();
@@ -427,7 +432,7 @@ class DonorCardView extends State<DonorCard> {
                     children: [
                       Icon(
                         Icons.person,
-                        color: darkGreen,
+                        color: darkGreen_,
                         size: 100,
                       ),
                     ],
@@ -471,7 +476,8 @@ class ListCard extends StatefulWidget {
   final String title;
   final Widget content;
 
-  const ListCard({super.key, required this.title, required this.content});
+  const ListCard({Key? key, required this.title, required this.content})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => ListCardView();
@@ -506,7 +512,7 @@ class ListCardView extends State<ListCard> {
 class SettingsList extends StatelessWidget {
   final List childCard;
 
-  const SettingsList({super.key, required this.childCard});
+  const SettingsList({Key? key, required this.childCard}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -525,11 +531,35 @@ class SettingsList extends StatelessWidget {
                         style: settingsText,
                       ),
                       trailing: const Icon(Icons.arrow_forward_ios),
-                      onTap: () {},
+                      onTap: () {
+                        onItemClick(context, e.toString());
+                      },
                     ))
                 .toList()),
       ),
     );
+  }
+}
+
+Object onItemClick(BuildContext context, String title) {
+  switch (title) {
+    case "My History":
+      // return Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => myHistoryPage()));
+
+      return context.router.push(MyHistoryRoute());
+
+    case "Donor Cards":
+      // return Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => AddPeople()));
+
+      return context.router.push(AddPeopleRoute());
+    // return Navigator.push(
+    //     context, MaterialPageRoute(builder: (context) => LoginPage()));
+
+    default:
+      return Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }
 
@@ -540,7 +570,8 @@ class ResopnsiveWidget extends StatelessWidget {
   final Widget landscape;
 
   const ResopnsiveWidget(
-      {super.key, required this.mobile, required this.landscape});
+      {Key? key, required this.mobile, required this.landscape})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

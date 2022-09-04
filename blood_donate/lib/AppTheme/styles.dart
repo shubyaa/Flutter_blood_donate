@@ -9,6 +9,7 @@ const double IconSize = 30.0;
 
 // App Colors
 
+Color darkGreen_ = const Color.fromRGBO(18, 96, 86, 1);
 Color darkGreen = const Color.fromRGBO(0, 109, 95, 1);
 Color midGreen = const Color.fromARGB(255, 118, 196, 185);
 
@@ -16,6 +17,17 @@ const textWhite = Colors.white;
 const offWhite = Color.fromARGB(255, 248, 255, 255);
 
 // Text Styles
+TextStyle myHistoryDonatedTextLite = GoogleFonts.montserrat(
+  fontSize: 20.0,
+  fontWeight: FontWeight.w600,
+  color: offWhite,
+);
+TextStyle myHistoryDonatedTextDark = GoogleFonts.montserrat(
+  fontSize: 20.0,
+  fontWeight: FontWeight.w600,
+  color: darkGreen_,
+);
+
 TextStyle number = GoogleFonts.lato(
   fontSize: 30.0,
   fontWeight: FontWeight.bold,
@@ -25,7 +37,7 @@ TextStyle number = GoogleFonts.lato(
 TextStyle settingsText = GoogleFonts.montserrat(
   fontSize: 20.0,
   fontWeight: FontWeight.w500,
-  color: Color.fromRGBO(18, 96, 86, 1.0),
+  color: darkGreen_,
 );
 
 TextStyle settingsTextTitle = GoogleFonts.montserrat(

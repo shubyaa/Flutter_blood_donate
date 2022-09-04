@@ -44,6 +44,7 @@ dependencies:
   flutter_switch: ^0.3.2
   responsive_framework: ^0.2.0
   animations: ^2.0.3
+  auto_route: ^2.3.2 
   rxdart: ^0.27.5
 
 dev_dependencies:
@@ -53,6 +54,8 @@ dev_dependencies:
   flutter_svg: ^0.22.0
   fl_chart: ^0.55.0
   page_transition: "^2.0.9"
+  auto_route_generator: ^2.3.2
+  build_runner: ^2.1.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

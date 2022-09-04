@@ -1,9 +1,12 @@
 import 'dart:collection';
 
 import 'package:animations/animations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/addPeople.dart';
 import 'package:blood_donate/app_widgets.dart';
+import 'package:blood_donate/main/page_router.gr.dart';
+import 'package:blood_donate/personal_details.dart';
 import 'package:blood_donate/startPage.dart';
 import 'package:blood_donate/home.dart';
 import 'package:blood_donate/maps.dart';
@@ -28,14 +31,6 @@ class _MainScreenState extends State<MainScreen> {
   // PageController pageController_ =
   //     new PageController(initialPage: 0, keepPage: true);
 
-  List<Widget> pageList = [
-    const HomePage(),
-    MapsPage(),
-    SettingsPage(),
-    // LoginPage(),
-    ProfilePage(),
-  ];
-
   //Page Transition Code
   // PageTransitionSwitcher(
   //         duration: Duration(milliseconds: 500),
@@ -50,35 +45,72 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // return WillPopScope(
+    //   onWillPop: _onWillPop,
+    //   child: Scaffold(
+    //     extendBody: true,
+    //     body: IndexedStack(
+    //         index: pageIndex,
+    //         children:
+    //             // getBody(pageIndex),
+    //             pageList),
+    //     bottomNavigationBar: BottomNavigationBar(
+    //       landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
+    //       onTap: bottomTapped,
+    //       enableFeedback: false,
+    //       currentIndex: pageIndex,
+    //       showSelectedLabels: false,
+    //       showUnselectedLabels: false,
+    //       iconSize: 35,
+    //       elevation: 0,
+    //       unselectedItemColor: const Color.fromRGBO(18, 96, 86, 0.5),
+    //       selectedItemColor: const Color.fromRGBO(18, 96, 86, 1),
+    //       type: BottomNavigationBarType.fixed,
+    //       backgroundColor: midGreen,
+    //       items: const <BottomNavigationBarItem>[
+    //         BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+    //         BottomNavigationBarItem(icon: Icon(Icons.my_location), label: ''),
+    //         BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
+    //         BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+    //       ],
+    //     ),
+    //   ),
+    // );
+
     return WillPopScope(
       onWillPop: _onWillPop,
-      child: Scaffold(
-        extendBody: true,
-        body: IndexedStack(
-            index: pageIndex,
-            children:
-                // getBody(pageIndex),
-                pageList),
-        bottomNavigationBar: BottomNavigationBar(
-          landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
-          onTap: bottomTapped,
-          enableFeedback: false,
-          currentIndex: pageIndex,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          iconSize: 35,
-          elevation: 0,
-          unselectedItemColor: const Color.fromRGBO(18, 96, 86, 0.5),
-          selectedItemColor: const Color.fromRGBO(18, 96, 86, 1),
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: midGreen,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.my_location), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-          ],
-        ),
+      child: AutoTabsScaffold(
+        bottomNavigationBuilder: (context, tabsRouter) {
+          return BottomNavigationBar(
+            landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
+            onTap: (value) {
+              tabsRouter.setActiveIndex(value);
+              bottomTapped(value);
+            },
+            enableFeedback: false,
+            currentIndex: tabsRouter.activeIndex,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            iconSize: 35,
+            elevation: 0,
+            unselectedItemColor: const Color.fromRGBO(18, 96, 86, 0.5),
+            selectedItemColor: const Color.fromRGBO(18, 96, 86, 1),
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: midGreen,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+              BottomNavigationBarItem(icon: Icon(Icons.my_location), label: ''),
+              BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
+              BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+            ],
+          );
+        },
+        routes: [
+          HomeRouter(),
+          MapsRouter(),
+          SettingsRouter(),
+          ProfileRouter(),
+        ],
       ),
     );
   }

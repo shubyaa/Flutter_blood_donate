@@ -33,7 +33,9 @@ class SettingsPage extends StatelessWidget {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
                         icon: const Icon(Icons.arrow_back),
                         color: Colors.white,
                         iconSize: 30.0,
@@ -59,44 +61,46 @@ class SettingsPage extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
                           color: offWhite),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                              'Account',
-                              style: settingsTextTitle,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text(
+                                'Account',
+                                style: settingsTextTitle,
+                              ),
                             ),
-                          ),
-                          const SettingsList(childCard: [
-                            "Profile",
-                            "Personal Details",
-                            "Location"
-                          ]),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text('Network', style: settingsTextTitle),
-                          ),
-                          const SettingsList(
-                              childCard: ["Use when Wi-Fi", "Navigation"]),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                              'Security',
-                              style: settingsTextTitle,
+                            const SettingsList(childCard: [
+                              "Profile",
+                              "Personal Details",
+                              "Location"
+                            ]),
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text('Network', style: settingsTextTitle),
                             ),
-                          ),
-                          const SettingsList(childCard: ["Availability"]),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                              'Logout',
-                              style: settingsTextTitle,
+                            const SettingsList(
+                                childCard: ["Use when Wi-Fi", "Navigation"]),
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text(
+                                'Security',
+                                style: settingsTextTitle,
+                              ),
                             ),
-                          ),
-                          const SettingsList(childCard: ["Logout"]),
-                        ],
+                            const SettingsList(childCard: ["Availability"]),
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text(
+                                'Logout',
+                                style: settingsTextTitle,
+                              ),
+                            ),
+                            const SettingsList(childCard: ["Logout"]),
+                          ],
+                        ),
                       ),
                     ),
                   ),
