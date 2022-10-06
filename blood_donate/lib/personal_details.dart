@@ -1,9 +1,6 @@
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/foundation/key.dart';
 
 class PersonalDetails extends StatefulWidget {
   const PersonalDetails({Key? key}) : super(key: key);
@@ -13,23 +10,22 @@ class PersonalDetails extends StatefulWidget {
 }
 
 class _PersonalDetailsState extends State<PersonalDetails> {
-  final TextEditingController nameController = new TextEditingController();
-  final TextEditingController emailController = new TextEditingController();
-  final TextEditingController ageController = new TextEditingController();
-  final TextEditingController bloodGroupController =
-      new TextEditingController();
-  final TextEditingController addressController = new TextEditingController();
-  final TextEditingController numberController = new TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController bloodGroupController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController numberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final nameField = TextFormField(
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       autofocus: false,
       controller: nameController,
       keyboardType: TextInputType.name,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{3,}$');
+        RegExp regex = RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
           return ("First Name Required");
         }
@@ -46,7 +42,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
           Icons.account_circle,
           color: Color.fromRGBO(139, 227, 216, 1.0),
         ),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Name",
         hintStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
         focusedBorder: OutlineInputBorder(
@@ -95,7 +91,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     );
 
     final ageField = TextFormField(
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       autofocus: false,
       controller: ageController,
       keyboardType: TextInputType.number,
@@ -117,7 +113,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
           Icons.man,
           color: Color.fromRGBO(139, 227, 216, 1.0),
         ),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Age",
         hintStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
         focusedBorder: OutlineInputBorder(
@@ -128,7 +124,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     );
 
     final bloodGroupField = TextFormField(
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       autofocus: false,
       controller: bloodGroupController,
       keyboardType: TextInputType.text,
@@ -150,7 +146,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
           Icons.medical_services,
           color: Color.fromRGBO(139, 227, 216, 1.0),
         ),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Blood Group",
         hintStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
         focusedBorder: OutlineInputBorder(
@@ -161,12 +157,11 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     );
 
     final addressField = TextFormField(
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       autofocus: false,
       controller: addressController,
       keyboardType: TextInputType.streetAddress,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
           return (" Address Required");
         }
@@ -180,7 +175,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
           Icons.location_on,
           color: Color.fromRGBO(139, 227, 216, 1.0),
         ),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Address",
         hintStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
         focusedBorder: OutlineInputBorder(
@@ -191,7 +186,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     );
 
     final numberField = TextFormField(
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       autofocus: false,
       controller: numberController,
       keyboardType: TextInputType.number,
@@ -213,7 +208,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
           Icons.phone,
           color: Color.fromRGBO(139, 227, 216, 1.0),
         ),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Phone Number",
         hintStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
         focusedBorder: OutlineInputBorder(

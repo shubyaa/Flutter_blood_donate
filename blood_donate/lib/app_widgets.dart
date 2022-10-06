@@ -543,15 +543,22 @@ class SettingsList extends StatelessWidget {
 
 Object onItemClick(BuildContext context, String title) {
   switch (title) {
+    case "Profile":
+      return context.router.push(ProfileRouter());
+
     case "My History":
+      return context.router.push(MyHistoryRoute());
+    case "Personal Details":
       // return Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => myHistoryPage()));
+      print(context.routeData.toString());
 
-      return context.router.push(MyHistoryRoute());
+      return context.router.push(PersonalDetailsRoute());
 
     case "Donor Cards":
       // return Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => AddPeople()));
+      print(AddPeopleRoute().path);
 
       return context.router.push(AddPeopleRoute());
     // return Navigator.push(

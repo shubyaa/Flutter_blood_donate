@@ -1,7 +1,10 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_widgets.dart';
 import 'package:blood_donate/main/main_screen.dart';
+import 'package:blood_donate/main/page_router.gr.dart';
+import 'package:blood_donate/personal_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +22,7 @@ class _AddPeopleState extends State<AddPeople> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/backgrounds/home_background.png"),
           fit: BoxFit.cover,
@@ -32,10 +35,13 @@ class _AddPeopleState extends State<AddPeople> {
             height: 80,
             child: FittedBox(
               child: FloatingActionButton(
-                onPressed: () => {},
+                onPressed: () {
+                  // AutoRouter.of(context).push(const PersonalDetailsRoute());
+                  context.router.push(const PersonalDetailsRoute());
+                },
                 // shape: ,
                 backgroundColor: darkGreen,
-                child: Icon(
+                child: const Icon(
                   Icons.add,
                   size: 30,
                   color: offWhite,
@@ -58,23 +64,13 @@ class _AddPeopleState extends State<AddPeople> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_back,
                             size: IconSize,
                             color: offWhite,
                           ),
                           onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.group_add,
-                            color: offWhite,
-                            size: IconSize,
-                          ),
-                          onPressed: () {
-                            // Navigator.pop(context);
+                            context.router.popUntilRoot();
                           },
                         ),
                       ],

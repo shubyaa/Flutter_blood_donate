@@ -82,9 +82,9 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 IconButton(
                                   onPressed: () => context.router.push(
-                                    AddPeopleRoute(),
+                                    const AddPeopleRoute(),
                                   ),
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.people,
                                     size: 30,
                                     color: Color.fromRGBO(239, 252, 250, 1),

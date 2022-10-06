@@ -10,10 +10,11 @@ import 'package:flutter/material.dart' as _i2;
 
 import '../addPeople.dart' as _i5;
 import '../home.dart' as _i4;
-import '../maps.dart' as _i6;
-import '../profile.dart' as _i8;
-import '../settings.dart' as _i7;
-import '../subpages/myHistory.dart' as _i9;
+import '../maps.dart' as _i7;
+import '../personal_details.dart' as _i6;
+import '../profile.dart' as _i9;
+import '../settings.dart' as _i8;
+import '../subpages/myHistory.dart' as _i10;
 import 'main_screen.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -47,7 +48,7 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i1.EmptyRouterPage();
         }),
-    HomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    HomePageRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
           return const _i4.HomePage();
@@ -57,27 +58,32 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i5.AddPeople();
         }),
+    PersonalDetailsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i6.PersonalDetails();
+        }),
     MapsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i6.MapsPage();
+          return const _i7.MapsPage();
         }),
     SettingsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i7.SettingsPage();
+          return const _i8.SettingsPage();
         }),
     ProfileRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i8.ProfilePage();
+          return const _i9.ProfilePage();
         }),
     MyHistoryRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<MyHistoryRouteArgs>(
               orElse: () => const MyHistoryRouteArgs());
-          return _i9.myHistoryPage(key: args.key);
+          return _i10.myHistoryPage(key: args.key);
         })
   };
 
@@ -85,18 +91,33 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(MainScreen.name, path: '/', children: [
           _i1.RouteConfig(HomeRouter.name, path: 'home', children: [
-            _i1.RouteConfig(HomeRoute.name, path: ''),
-            _i1.RouteConfig(AddPeopleRoute.name, path: 'people')
+            _i1.RouteConfig(HomePageRouter.name, path: ''),
+            _i1.RouteConfig(AddPeopleRoute.name, path: 'people', children: [
+              _i1.RouteConfig(PersonalDetailsRoute.name, path: 'personal')
+            ])
           ]),
           _i1.RouteConfig(MapsRouter.name,
               path: 'maps',
               children: [_i1.RouteConfig(MapsRoute.name, path: '')]),
-          _i1.RouteConfig(SettingsRouter.name,
-              path: 'settings',
-              children: [_i1.RouteConfig(SettingsRoute.name, path: '')]),
+          _i1.RouteConfig(SettingsRouter.name, path: 'settings', children: [
+            _i1.RouteConfig(SettingsRoute.name, path: ''),
+            _i1.RouteConfig(PersonalDetailsRoute.name, path: 'personal'),
+            _i1.RouteConfig(ProfileRouter.name, path: 'profile', children: [
+              _i1.RouteConfig(ProfileRoute.name, path: ''),
+              _i1.RouteConfig(MyHistoryRoute.name, path: 'history'),
+              _i1.RouteConfig(PersonalDetailsRoute.name, path: 'personal'),
+              _i1.RouteConfig(AddPeopleRoute.name, path: 'people', children: [
+                _i1.RouteConfig(PersonalDetailsRoute.name, path: 'personal')
+              ])
+            ])
+          ]),
           _i1.RouteConfig(ProfileRouter.name, path: 'profile', children: [
             _i1.RouteConfig(ProfileRoute.name, path: ''),
-            _i1.RouteConfig(MyHistoryRoute.name, path: 'history')
+            _i1.RouteConfig(MyHistoryRoute.name, path: 'history'),
+            _i1.RouteConfig(PersonalDetailsRoute.name, path: 'personal'),
+            _i1.RouteConfig(AddPeopleRoute.name, path: 'people', children: [
+              _i1.RouteConfig(PersonalDetailsRoute.name, path: 'personal')
+            ])
           ])
         ])
       ];
@@ -137,16 +158,23 @@ class ProfileRouter extends _i1.PageRouteInfo<void> {
   static const String name = 'ProfileRouter';
 }
 
-class HomeRoute extends _i1.PageRouteInfo<void> {
-  const HomeRoute() : super(name, path: '');
+class HomePageRouter extends _i1.PageRouteInfo<void> {
+  const HomePageRouter() : super(name, path: '');
 
-  static const String name = 'HomeRoute';
+  static const String name = 'HomePageRouter';
 }
 
 class AddPeopleRoute extends _i1.PageRouteInfo<void> {
-  const AddPeopleRoute() : super(name, path: 'people');
+  const AddPeopleRoute({List<_i1.PageRouteInfo>? children})
+      : super(name, path: 'people', initialChildren: children);
 
   static const String name = 'AddPeopleRoute';
+}
+
+class PersonalDetailsRoute extends _i1.PageRouteInfo<void> {
+  const PersonalDetailsRoute() : super(name, path: 'personal');
+
+  static const String name = 'PersonalDetailsRoute';
 }
 
 class MapsRoute extends _i1.PageRouteInfo<void> {

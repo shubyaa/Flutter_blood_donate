@@ -25,36 +25,12 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
-  // static final routes = {
-  //   '/home': (context) => HomePage(),
-  //   '/maps': (context) => MapsPage(),
-  //   '/settings': (context) => SettingsPage(),
-  //   '/profile': (context) => ProfilePage(),
-  //   '/home/addPeople': (context) => AddPeople(),
-  //   '/addPeople': (context) => AddPeople(),
-  //   '/profile/history': (context) => myHistoryPage(),
-  // };
-
   final _appRouter = AppRouter();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      // builder: (context, child) => ResponsiveWrapper.builder(
-      //   child,
-      //   maxWidth: 1200,
-      //   minWidth: 480,
-      //   defaultScale: true,
-      //   breakpoints: [
-      //     ResponsiveBreakpoint.resize(480, name: MOBILE),
-      //     ResponsiveBreakpoint.autoScale(800, name: TABLET),
-      //     ResponsiveBreakpoint.resize(1000, name: DESKTOP),
-      //   ],
-      // ),
-      // routes: routes,
-      // initialRoute: "/",
-
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       routerDelegate: AutoRouterDelegate(

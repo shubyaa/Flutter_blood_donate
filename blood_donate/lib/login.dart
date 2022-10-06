@@ -128,7 +128,11 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (Navigator.of(context).canPop()) {
+                            Navigator.of(context).pop();
+                          }
+                        },
                         icon: const Icon(Icons.arrow_back),
                         color: Colors.white,
                         iconSize: 30.0,

@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
+import 'package:blood_donate/main/page_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_widgets.dart';
@@ -34,7 +36,10 @@ class SettingsPage extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          // Navigator.of(context).pushReplacement(HomeRouter())
+                          // var _context = AutoRouter.of(context);
+                          // AutoRouter.of(context).pop();
+                          context.router.popUntilRoot();
                         },
                         icon: const Icon(Icons.arrow_back),
                         color: Colors.white,
