@@ -65,8 +65,10 @@ class AppRouter extends _i1.RootStackRouter {
         }),
     MapsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i7.MapsPage();
+        builder: (data) {
+          final args =
+              data.argsAs<MapsRouteArgs>(orElse: () => const MapsRouteArgs());
+          return _i7.MapsPage(key: args.key);
         }),
     SettingsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -177,10 +179,17 @@ class PersonalDetailsRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'PersonalDetailsRoute';
 }
 
-class MapsRoute extends _i1.PageRouteInfo<void> {
-  const MapsRoute() : super(name, path: '');
+class MapsRoute extends _i1.PageRouteInfo<MapsRouteArgs> {
+  MapsRoute({_i2.Key? key})
+      : super(name, path: '', args: MapsRouteArgs(key: key));
 
   static const String name = 'MapsRoute';
+}
+
+class MapsRouteArgs {
+  const MapsRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class SettingsRoute extends _i1.PageRouteInfo<void> {

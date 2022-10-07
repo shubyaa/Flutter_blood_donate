@@ -1,6 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:blood_donate/app_functions.dart';
 import 'package:blood_donate/login.dart';
 import 'package:blood_donate/addPeople.dart';
+import 'package:blood_donate/maps.dart';
 import 'package:blood_donate/subpages/myHistory.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +10,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:blood_donate/main/page_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 
 // import 'package:google_fonts/google_fonts.dart';
 
@@ -507,6 +512,173 @@ class ListCardView extends State<ListCard> {
       ),
     );
   }
+}
+
+Widget mapsCard(
+    BuildContext context, SwipeableCardSectionController controller) {
+  return Card(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15),
+    ),
+    elevation: 2.0,
+    color: Colors.white,
+    child: Container(
+      padding: const EdgeInsets.all(20),
+      height: MediaQuery.of(context).size.height * 0.45,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              cardTitle('Request for Donor'),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Name',
+                            style: smallMapsText,
+                          ),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Ashish Bhosle',
+                                style: largeMapsText,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Blood Group',
+                            style: smallMapsText,
+                          ),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'A+',
+                                style: largeMapsText,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Gender/Age',
+                            style: smallMapsText,
+                          ),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Male/ 35',
+                                style: largeMapsText,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Contact No.',
+                            style: smallMapsText,
+                          ),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                '+91 9619065372',
+                                style: largeMapsText,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          // Text('data')
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  child: TextButton(
+                    style: greenFill,
+                    onPressed: () async {
+                      var uri = Uri.parse('tel:9619065372');
+                      if (await canLaunchUrl(uri)) {
+                        await launchUrl(uri);
+                      } else {
+                        throw "Unable to call 9619065372";
+                      }
+                    }, //Function
+                    child: Text(
+                      'Request',
+                      style: boldWhite,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  child: TextButton(
+                    style: outlineRed,
+                    onPressed: () {
+                      controller.triggerSwipeRight();
+                    },
+                    child: Text(
+                      'Cancel',
+                      style: boldRed,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 class SettingsList extends StatelessWidget {

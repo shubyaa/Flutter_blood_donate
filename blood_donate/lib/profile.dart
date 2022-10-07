@@ -1,10 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
+import 'package:blood_donate/app_functions.dart';
 import 'package:blood_donate/main/main_screen.dart';
 import 'package:blood_donate/main/page_router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:blood_donate/main/main_screen.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'app_widgets.dart';
 
@@ -39,7 +41,7 @@ class ProfilePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.arrow_back,
                                   size: 30,
                                   color: offWhite,
@@ -49,15 +51,13 @@ class ProfilePage extends StatelessWidget {
                                       const HomePageRouter().path);
                                 },
                               ),
-                              IconButton(
+                              const IconButton(
                                 icon: Icon(
                                   Icons.share,
                                   size: 30,
                                   color: offWhite,
                                 ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
+                                onPressed: shareFile,
                               ),
                             ],
                           ),

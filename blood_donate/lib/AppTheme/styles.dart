@@ -17,6 +17,19 @@ const textWhite = Colors.white;
 const offWhite = Color.fromARGB(255, 248, 255, 255);
 
 // Text Styles
+
+//_____________________Maps Page ___________________________
+
+TextStyle smallMapsText = GoogleFonts.lato(
+  color: darkGreen,
+  fontSize: 15,
+);
+
+TextStyle largeMapsText = GoogleFonts.lato(
+  fontSize: 20,
+  color: darkGreen,
+);
+//_____________________Maps Page ___________________________
 TextStyle myHistoryDonatedTextLite = GoogleFonts.montserrat(
   fontSize: 20.0,
   fontWeight: FontWeight.w600,
