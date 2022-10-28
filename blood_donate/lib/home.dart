@@ -1,14 +1,10 @@
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_widgets.dart';
-// import 'package:blood_donate/addPeople.dart';
-import 'package:blood_donate/main.dart';
-import 'package:blood_donate/main/main_screen.dart';
+import 'package:blood_donate/elements/custom_alert.dart';
 import 'package:blood_donate/main/page_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:blood_donate/main/page_router.dart';
 
 // ignore: depend_on_referenced_packages
 
@@ -24,6 +20,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool switch_bool = true;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,10 +116,14 @@ class _HomePageState extends State<HomePage> {
                                       style: bloodGroupText,
                                     ),
                                     Text(
-                                      'Availability',
+                                      switch_bool
+                                          ? 'Availability'
+                                          : 'Not Available',
                                       textAlign: TextAlign.center,
                                       textDirection: TextDirection.ltr,
-                                      style: smallText,
+                                      style: switch_bool
+                                          ? smallText
+                                          : smallTextRed,
                                     ),
                                   ],
                                 ),
@@ -174,7 +179,11 @@ class _HomePageState extends State<HomePage> {
                                     width: 150,
                                     child: TextButton(
                                       style: outlineRed,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          context.tabsRouter.setActiveIndex(1);
+                                        });
+                                      },
                                       child: Text(
                                         'Request',
                                         style: boldRed,
@@ -185,7 +194,37 @@ class _HomePageState extends State<HomePage> {
                                     width: 150,
                                     child: TextButton(
                                       style: greenFill,
-                                      onPressed: () {}, //Function
+                                      onPressed: () {
+                                        if (!switch_bool) {
+                                          setState(() {
+                                            switch_bool = true;
+                                          });
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return const CustomDialog(
+                                                  title: 'Congrats !',
+                                                  description:
+                                                      ' You are available to donate',
+                                                );
+                                              });
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: const Text(
+                                                "Already loading",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              backgroundColor: darkGreen,
+                                              duration: const Duration(
+                                                  milliseconds: 700),
+                                            ),
+                                          );
+                                        }
+                                      }, //Function
                                       child: Text(
                                         'Be a donor',
                                         style: boldWhite,

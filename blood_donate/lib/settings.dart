@@ -77,17 +77,22 @@ class SettingsPage extends StatelessWidget {
                                 style: settingsTextTitle,
                               ),
                             ),
-                            const SettingsList(childCard: [
-                              "Profile",
-                              "Personal Details",
-                              "Location"
-                            ]),
+                            SettingsList(
+                              childCard: [
+                                "Profile",
+                                "Personal Details",
+                                "Location"
+                              ],
+                              context_: context,
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: Text('Network', style: settingsTextTitle),
                             ),
-                            const SettingsList(
-                                childCard: ["Use when Wi-Fi", "Navigation"]),
+                            SettingsList(
+                              childCard: ["Use when Wi-Fi", "Navigation"],
+                              context_: context,
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: Text(
@@ -95,7 +100,10 @@ class SettingsPage extends StatelessWidget {
                                 style: settingsTextTitle,
                               ),
                             ),
-                            const SettingsList(childCard: ["Availability"]),
+                            SettingsList(
+                              childCard: ["Availability"],
+                              context_: context,
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: Text(
@@ -103,7 +111,10 @@ class SettingsPage extends StatelessWidget {
                                 style: settingsTextTitle,
                               ),
                             ),
-                            const SettingsList(childCard: ["Logout"]),
+                            SettingsList(
+                              childCard: ["Logout"],
+                              context_: context,
+                            ),
                           ],
                         ),
                       ),

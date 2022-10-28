@@ -92,6 +92,10 @@ TextStyle smallText = GoogleFonts.lato(
   fontSize: 10,
   color: Colors.white,
 );
+TextStyle smallTextRed = GoogleFonts.lato(
+  fontSize: 10,
+  color: Colors.red,
+);
 
 TextStyle titleTextStyle = GoogleFonts.montserrat(
   color: Colors.white,
@@ -113,6 +117,16 @@ TextStyle boldRed = GoogleFonts.lato(
   color: Colors.red,
   fontSize: 16,
 );
+TextStyle boldDarkGreen = GoogleFonts.lato(
+  fontWeight: FontWeight.bold,
+  color: darkGreen,
+  fontSize: 20,
+);
+TextStyle normalDarkGreen = GoogleFonts.lato(
+  fontWeight: FontWeight.w600,
+  color: darkGreen,
+  fontSize: 18,
+);
 
 // Button Styles
 
@@ -132,6 +146,15 @@ ButtonStyle outlineRed = ButtonStyle(
     RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
       side: const BorderSide(width: 3, color: Colors.red),
+    ),
+  ),
+);
+
+ButtonStyle outlineDarkGreen = ButtonStyle(
+  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+    RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+      side: BorderSide(width: 3, color: darkGreen),
     ),
   ),
 );

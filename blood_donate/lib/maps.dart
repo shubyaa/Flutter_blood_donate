@@ -1,6 +1,9 @@
+import 'package:blood_donate/AppTheme/styles.dart';
+import 'package:blood_donate/app_functions.dart';
 import 'package:blood_donate/app_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 
@@ -9,10 +12,45 @@ final lng = 72.8777;
 
 final cordinates = LatLng(lat, lng);
 final center = LatLng(lat - 0.003, lng);
-final _controller = SwipeableCardSectionController();
+var _controller = SwipeableCardSectionController();
 
-class MapsPage extends StatelessWidget {
+var status = Geolocator.checkPermission();
+
+class MapsPage extends StatefulWidget {
   MapsPage({Key? key}) : super(key: key);
+
+  @override
+  State<MapsPage> createState() => _MapsPageState();
+}
+
+class _MapsPageState extends State<MapsPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Position? _position;
+  void _getCurrentLocation() async {
+    Position position = await _determinePosition();
+    setState(() {
+      _position = position;
+    });
+  }
+
+  Future<Position> _determinePosition() async {
+    LocationPermission permission;
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    } else if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+    return await Geolocator.getCurrentPosition();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +60,9 @@ class MapsPage extends StatelessWidget {
         children: [
           FlutterMap(
             options: MapOptions(
-              center: center,
+              center: _position != null
+                  ? LatLng(_position!.latitude, _position!.longitude)
+                  : center,
               zoom: 15,
             ),
             children: [
@@ -46,24 +86,48 @@ class MapsPage extends StatelessWidget {
                         color: Colors.red,
                       );
                     },
-                  )
+                  ),
+                  Marker(
+                    // point: cordinates,
+                    point: _position != null
+                        ? LatLng(_position!.latitude, _position!.longitude)
+                        : center,
+                    builder: (context) {
+                      return Icon(
+                        Icons.location_on_sharp,
+                        size: 50,
+                        color: darkGreen,
+                      );
+                    },
+                  ),
                 ],
               )
             ],
           ),
-          // LineCharts(),
-
           Container(
-            height: MediaQuery.of(context).size.height * 0.45,
-            child: SwipeableCardsSection(
-              cardController: _controller,
-              enableSwipeDown: false,
-              enableSwipeUp: false,
-              context: context,
-              items: [
-                mapsCard(context, _controller),
-                mapsCard(context, _controller),
-                mapsCard(context, _controller),
+            height: MediaQuery.of(context).size.height * 0.55,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                  backgroundColor: midGreen,
+                  onPressed: () {},
+                  child: Icon(
+                    Icons.my_location,
+                    color: darkGreen,
+                  ),
+                ),
+                SwipeableCardsSection(
+                  cardController: _controller,
+                  enableSwipeDown: false,
+                  enableSwipeUp: false,
+                  context: context,
+                  items: [
+                    mapsCard(context, _controller),
+                    mapsCard(context, _controller),
+                    mapsCard(context, _controller),
+                  ],
+                ),
               ],
             ),
           )

@@ -3,6 +3,8 @@ import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_functions.dart';
 import 'package:blood_donate/main/page_router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:blood_donate/main/main_screen.dart';
+// import 'package:share_plus/share_plus.dart';
 import 'app_widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -123,6 +125,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   color: offWhite,
                                 ),
                                 onPressed: shareFile,
+                                // onPressed:,
+                                // onPressed: shareFile,
                               ),
                             ],
                           ),
@@ -192,13 +196,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Container(
                             color: offWhite,
                             padding: const EdgeInsets.fromLTRB(0, 70, 0, 10),
-                            child: const SettingsList(
+                            child: SettingsList(
                               childCard: [
                                 "Personal Details",
                                 "Donor Cards",
                                 "My History",
                                 "Logout",
                               ],
+                              context_: context,
                             ),
                           ),
                         ),

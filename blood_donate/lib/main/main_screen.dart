@@ -1,22 +1,11 @@
 import 'dart:collection';
-
-import 'package:animations/animations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
-import 'package:blood_donate/addPeople.dart';
-import 'package:blood_donate/app_widgets.dart';
+import 'package:blood_donate/app_functions.dart';
 import 'package:blood_donate/main/page_router.gr.dart';
-import 'package:blood_donate/personal_details.dart';
-import 'package:blood_donate/startPage.dart';
-import 'package:blood_donate/home.dart';
-import 'package:blood_donate/maps.dart';
-import 'package:blood_donate/login.dart';
-// import 'package:blood_donate/profile.dart';
-import 'package:blood_donate/profile.dart';
-import 'package:blood_donate/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:blood_donate/app_widgets.dart';
-import 'package:flutter/services.dart';
+
+int pageIndex = 0;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -26,8 +15,14 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int pageIndex = 0;
   ListQueue<int> _navigationQueue = ListQueue();
+
+  @override
+  void initState() {
+    checkPermission();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

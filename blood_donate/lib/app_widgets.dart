@@ -10,7 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
 
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 import 'package:blood_donate/main/page_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
@@ -643,14 +643,17 @@ Widget mapsCard(
                   padding: const EdgeInsets.symmetric(horizontal: 3),
                   child: TextButton(
                     style: greenFill,
-                    onPressed: () async {
-                      var uri = Uri.parse('tel:9619065372');
-                      if (await canLaunchUrl(uri)) {
-                        await launchUrl(uri);
-                      } else {
-                        throw "Unable to call 9619065372";
-                      }
-                    }, //Function
+                    onPressed: () {
+                      requestCall('9619065372');
+                    },
+                    // onPressed: () async {
+                    //   var uri = Uri.parse('tel:9619065372');
+                    //   if (await canLaunchUrl(uri)) {
+                    //     await launchUrl(uri);
+                    //   } else {
+                    //     throw "Unable to call 9619065372";
+                    //   }
+                    // }, //Function
                     child: Text(
                       'Request',
                       style: boldWhite,
@@ -683,8 +686,11 @@ Widget mapsCard(
 
 class SettingsList extends StatelessWidget {
   final List childCard;
+  final BuildContext context_;
 
-  const SettingsList({Key? key, required this.childCard}) : super(key: key);
+  const SettingsList(
+      {Key? key, required this.childCard, required this.context_})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -704,7 +710,7 @@ class SettingsList extends StatelessWidget {
                       ),
                       trailing: const Icon(Icons.arrow_forward_ios),
                       onTap: () {
-                        onItemClick(context, e.toString());
+                        onItemClick(context_, e.toString());
                       },
                     ))
                 .toList()),
@@ -713,33 +719,47 @@ class SettingsList extends StatelessWidget {
   }
 }
 
-Object onItemClick(BuildContext context, String title) {
-  switch (title) {
-    case "Profile":
-      return context.router.push(ProfileRouter());
-
-    case "My History":
-      return context.router.push(MyHistoryRoute());
-    case "Personal Details":
-      // return Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => myHistoryPage()));
-      print(context.routeData.toString());
-
-      return context.router.push(PersonalDetailsRoute());
-
-    case "Donor Cards":
-      // return Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => AddPeople()));
-      print(AddPeopleRoute().path);
-
-      return context.router.push(AddPeopleRoute());
-    // return Navigator.push(
-    //     context, MaterialPageRoute(builder: (context) => LoginPage()));
-
-    default:
-      return Navigator.push(
-          context, MaterialPageRoute(builder: (context) => LoginPage()));
+void onItemClick(BuildContext context, String title) {
+  if (title == "Profile") {
+    context.tabsRouter.setActiveIndex(3);
+  } else if (title == "Location") {
+    context.tabsRouter.setActiveIndex(1);
+  } else if (title == "My History") {
+    context.router.push(MyHistoryRoute());
+  } else if (title == "Personal Details") {
+    context.router.push(PersonalDetailsRoute());
+  } else if (title == "Donor Cards") {
+    // context.tabsRouter.setActiveIndex(0);
+    context.router.push(AddPeopleRoute());
   }
+  // switch (title) {
+  //   case "Profile":
+  //     // return context.router.push(ProfileRouter());
+  //     print(context.tabsRouter.activeIndex);
+  //     return () => context.tabsRouter.setActiveIndex(3);
+
+  //   case "My History":
+  //     return context.router.push(MyHistoryRoute());
+  //   case "Personal Details":
+  //     // return Navigator.push(
+  //     //     context, MaterialPageRoute(builder: (context) => myHistoryPage()));
+  //     print(context.routeData.toString());
+
+  //     return context.router.push(PersonalDetailsRoute());
+
+  //   case "Donor Cards":
+  //     // return Navigator.push(
+  //     //     context, MaterialPageRoute(builder: (context) => AddPeople()));
+  //     print(AddPeopleRoute().path);
+
+  //     return context.router.push(AddPeopleRoute());
+  //   // return Navigator.push(
+  //   //     context, MaterialPageRoute(builder: (context) => LoginPage()));
+
+  //   default:
+  //     return Navigator.push(
+  //         context, MaterialPageRoute(builder: (context) => LoginPage()));
+  // }
 }
 
 // Responsive Widget
