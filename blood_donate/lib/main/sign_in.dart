@@ -203,53 +203,50 @@ class _SignInPageState extends State<SignInPage> {
                   const SizedBox(
                     height: 10.0,
                   ),
-                  Align(
-                    child: circularImage(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: Align(
+                      child: circularImage(),
+                    ),
                   ),
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: nameField,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: emailField,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: passwordField,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: confirmPasswordField,
-                        ),
-                        const SizedBox(
-                          height: 50.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 0),
-                          child: RegisterButton,
-                        ),
-                        const SizedBox(
-                          height: 50.0,
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Image.asset("assets/backgrounds/Google.png"),
-                        ),
-                      ],
+                    child: SingleChildScrollView(
+                      physics: NeverScrollableScrollPhysics(),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(15.0, 0, 15.0, 20.0),
+                            child: nameField,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(15.0, 0, 15.0, 20.0),
+                            child: emailField,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(15.0, 0, 15.0, 20.0),
+                            child: passwordField,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(15.0, 0, 15.0, 20.0),
+                            child: confirmPasswordField,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(35.0, 0, 35.0, 20.0),
+                            child: RegisterButton,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Image.asset("assets/backgrounds/Google.png"),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

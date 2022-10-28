@@ -253,7 +253,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             mobile: Padding(
               padding: const EdgeInsets.fromLTRB(10, 40, 10, 10),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Row(
                     children: [
@@ -284,38 +284,52 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     height: 20.0,
                   ),
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: nameField,
+                    child: Container(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        physics: NeverScrollableScrollPhysics(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  15.0, 0, 15.0, 25.0),
+                              child: nameField,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  15.0, 0, 15.0, 25.0),
+                              child: emailField,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  15.0, 0, 15.0, 25.0),
+                              child: ageField,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  15.0, 0, 15.0, 25.0),
+                              child: bloodGroupField,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  15.0, 0, 15.0, 25.0),
+                              child: addressField,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  15.0, 0, 15.0, 25.0),
+                              child: numberField,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  35.0, 0, 35.0, 25.0),
+                              child: ProceedButton,
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: emailField,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: ageField,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: bloodGroupField,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: addressField,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: numberField,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 0),
-                          child: ProceedButton,
-                        ),
-                      ],
+                      ),
                     ),
                   )
                 ],

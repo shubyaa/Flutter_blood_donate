@@ -1,17 +1,82 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:blood_donate/AppTheme/styles.dart';
 import 'package:blood_donate/app_functions.dart';
-import 'package:blood_donate/main/main_screen.dart';
 import 'package:blood_donate/main/page_router.gr.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:blood_donate/main/main_screen.dart';
-import 'package:share_plus/share_plus.dart';
-
 import 'app_widgets.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  XFile? _imgXFile;
+  final ImagePicker imagePicker = ImagePicker();
+
+  getImageFromGalary() async {
+    final pickedFile = await imagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _imgXFile = pickedFile;
+    });
+  }
+
+  getImageFromCamera() async {
+    final pickedFile = await imagePicker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _imgXFile = pickedFile;
+    });
+  }
+
+  Widget bottomSheet(BuildContext context) {
+    return Container(
+      height: 100,
+      width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            "Choose Profile Photo",
+            style: TextStyle(fontSize: 20),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextButton.icon(
+                onPressed: () {
+                  getImageFromCamera();
+                },
+                icon: const Icon(
+                  Icons.camera,
+                  color: Colors.black,
+                ),
+                label:
+                    const Text("Camera", style: TextStyle(color: Colors.black)),
+              ),
+              TextButton.icon(
+                onPressed: () {
+                  getImageFromGalary();
+                },
+                icon: const Icon(
+                  Icons.photo,
+                  color: Colors.black,
+                ),
+                label: const Text(
+                  "Galary",
+                  style: TextStyle(color: Colors.black),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,14 +131,17 @@ class ProfilePage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                           child: Stack(
                             children: [
-                              const CircleAvatar(
+                              CircleAvatar(
                                 backgroundColor: Colors.white,
                                 maxRadius: 70,
                                 child: CircleAvatar(
                                   radius: 65,
                                   backgroundColor: Colors.yellow,
-                                  backgroundImage: NetworkImage(
-                                      "https://www.woolha.com/media/2020/03/eevee.png"),
+                                  backgroundImage: _imgXFile == null
+                                      ? NetworkImage(
+                                          "https://www.woolha.com/media/2020/03/eevee.png")
+                                      : FileImage(File(_imgXFile!.path))
+                                          as ImageProvider,
                                 ),
                               ),
                               Positioned(
@@ -84,7 +152,13 @@ class ProfilePage extends StatelessWidget {
                                   height: 40,
                                   child: FittedBox(
                                     child: FloatingActionButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          builder: ((Builder) =>
+                                              bottomSheet(context)),
+                                        );
+                                      },
                                       mini: true,
                                       backgroundColor: midGreen,
                                       child: Icon(Icons.add),

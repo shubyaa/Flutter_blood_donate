@@ -45,6 +45,7 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2 #Future Scope bottom nav
   flutter_map: ^3.0.0
   swipeable_card_stack: ^0.0.5
+  image_picker: ^0.8.6
 
   # flutter_share: ^2.0.0
   # flutter_document_picker: ^5.1.0

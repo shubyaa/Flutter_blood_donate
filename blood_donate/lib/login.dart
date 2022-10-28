@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
             mobile: Padding(
               padding: const EdgeInsets.fromLTRB(10, 40, 10, 10),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Row(
                     children: [
@@ -142,63 +142,73 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 10.0,
                   ),
-                  Align(
-                    child: circularImage(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: Align(
+                      child: circularImage(),
+                    ),
                   ),
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: emailField,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: passwordField,
-                        ),
-                        const SizedBox(
-                          height: 50.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 0),
-                          child: loginButton,
-                        ),
-                        const SizedBox(
-                          height: 50.0,
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Image.asset("assets/backgrounds/Google.png"),
-                        ),
-                        const SizedBox(
-                          height: 80.0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Dont't have an account? ",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 18.0),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => SignInPage()));
-                              },
-                              child: const Text(
-                                "Sign in",
+                    child: SingleChildScrollView(
+                      physics: NeverScrollableScrollPhysics(),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(15.0, 0, 15.0, 25),
+                            child: emailField,
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(15.0, 0, 15.0, 25),
+                            child: passwordField,
+                          ),
+                          const SizedBox(
+                            height: 50.0,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(35.0, 0, 35.0, 25),
+                            child: loginButton,
+                          ),
+                          const SizedBox(
+                            height: 50.0,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Image.asset("assets/backgrounds/Google.png"),
+                          ),
+                          const SizedBox(
+                            height: 80.0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "Dont't have an account? ",
                                 style: TextStyle(
-                                    color: Colors.red, fontSize: 18.0),
+                                    color: Colors.white, fontSize: 18.0),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => SignInPage()));
+                                },
+                                child: const Text(
+                                  "Sign in",
+                                  style: TextStyle(
+                                      color: Colors.red, fontSize: 18.0),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
