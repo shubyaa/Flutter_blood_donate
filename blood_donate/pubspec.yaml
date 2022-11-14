@@ -46,13 +46,9 @@ dependencies:
   flutter_map: ^3.0.0
   swipeable_card_stack: ^0.0.5
   image_picker: ^0.8.6
-  # fluttertoast: ^8.0.9
-  # toast: ^0.3.0
-  geolocator: ^9.0.2
-  # location: ^4.4.0
+  # geolocator: ^9.0.2
+  location: ^4.4.0
   permission_handler: ^10.2.0  # requires android 33 or higher
-  # flutter_share: ^2.0.0
-  # flutter_document_picker: ^5.1.0
 
   share_plus: ^6.0.1
 

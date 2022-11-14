@@ -3,18 +3,17 @@ import 'package:blood_donate/app_functions.dart';
 import 'package:blood_donate/app_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:location/location.dart';
 import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 
 final lat = 19.0790;
 final lng = 72.8777;
 
+late UserLocation location;
 final cordinates = LatLng(lat, lng);
 final center = LatLng(lat - 0.003, lng);
 var _controller = SwipeableCardSectionController();
-
-var status = Geolocator.checkPermission();
 
 class MapsPage extends StatefulWidget {
   MapsPage({Key? key}) : super(key: key);
@@ -24,32 +23,14 @@ class MapsPage extends StatefulWidget {
 }
 
 class _MapsPageState extends State<MapsPage> {
+  LocationData? _current;
+
   @override
   void initState() {
+    () async {
+      location = await getLocation();
+    };
     super.initState();
-  }
-
-  Position? _position;
-  void _getCurrentLocation() async {
-    Position position = await _determinePosition();
-    setState(() {
-      _position = position;
-    });
-  }
-
-  Future<Position> _determinePosition() async {
-    LocationPermission permission;
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    } else if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
-    return await Geolocator.getCurrentPosition();
   }
 
   @override
@@ -60,9 +41,7 @@ class _MapsPageState extends State<MapsPage> {
         children: [
           FlutterMap(
             options: MapOptions(
-              center: _position != null
-                  ? LatLng(_position!.latitude, _position!.longitude)
-                  : center,
+              center: center,
               zoom: 15,
             ),
             children: [
@@ -89,9 +68,9 @@ class _MapsPageState extends State<MapsPage> {
                   ),
                   Marker(
                     // point: cordinates,
-                    point: _position != null
-                        ? LatLng(_position!.latitude, _position!.longitude)
-                        : center,
+                    point: _current == null
+                        ? center
+                        : LatLng(location.latitude!, location.longitude!),
                     builder: (context) {
                       return Icon(
                         Icons.location_on_sharp,

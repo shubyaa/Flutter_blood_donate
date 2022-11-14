@@ -1,12 +1,15 @@
 // import 'package:geolocator/geolocator.dart';
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:location/location.dart';
+import 'package:permission_handler/permission_handler.dart' as ph;
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart' as lp;
 import 'package:latlong2/latlong.dart';
+
+Location location = Location();
 
 void shareFile() async {
   await Share.share('This is Shubham Pednekar :-\n www.github.com/shubyaa');
@@ -22,37 +25,41 @@ void requestCall(String number) async {
 }
 
 void checkPermission() async {
-  var status = await Permission.location.status;
+  var status = await ph.Permission.location.status;
   if (status.isDenied) {
-    Map<Permission, PermissionStatus> _statusMap = await [
-      Permission.location,
+    Map<ph.Permission, ph.PermissionStatus> _statusMap = await [
+      ph.Permission.location,
     ].request();
   }
   if (status.isPermanentlyDenied) {
-    openAppSettings();
+    ph.openAppSettings();
   }
 }
 
-// void checkPermission() async {
-//   LocationPe permission = await Geolocator.checkPermission();
+Future<UserLocation> getLocation() async {
+  bool _serviceEnabled;
+  PermissionStatus _permissionGranted;
+  LocationData _locationData;
 
-//   if (permission == LocationPermission.denied) {
-//     permission = await Geolocator.requestPermission();
-//   } else if (permission == LocationPermission.deniedForever) {
-//     openAppSettings();
-//   } else {
-//     print('Location Granted');
-//   }
-// }
+  _serviceEnabled = await location.serviceEnabled();
 
-Future<Position> getLocationCordinates() async {
-  var status = Geolocator.checkPermission();
-
-  if (status == LocationPermission.denied) {
-    print("Location not allowed");
-    Position position = Position.fromMap("message");
-    return position;
+  _permissionGranted = await location.hasPermission();
+  if (_permissionGranted == PermissionStatus.denied) {
+    _permissionGranted = await location.requestPermission();
   } else {
-    return await Geolocator.getCurrentPosition();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+    } else {
+      _locationData = await location.getLocation();
+      return UserLocation(_locationData.latitude, _locationData.longitude);
+    }
   }
+  return UserLocation(15.25, 15.50);
+}
+
+class UserLocation {
+  final double? latitude;
+  final double? longitude;
+
+  UserLocation(this.latitude, this.longitude);
 }

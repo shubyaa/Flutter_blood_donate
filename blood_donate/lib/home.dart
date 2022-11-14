@@ -213,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                                               .showSnackBar(
                                             SnackBar(
                                               content: const Text(
-                                                "Already loading",
+                                                "Already donating",
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                 ),
