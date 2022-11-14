@@ -18,3 +18,6 @@ samples, guidance on mobile development, and a full API reference.
 ### Link for Bottom Nav routing with back Trace and Nested Navigation
 
 <https://resocoder.com/2021/09/16/flutter-bottom-navigation-with-nested-routing/>
+
+# Flutter version= 3.3.8
+# Django Version = 3.1.14
