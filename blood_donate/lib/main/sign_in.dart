@@ -1,18 +1,20 @@
 import 'package:blood_donate/AppTheme/styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:blood_donate/app_widgets.dart';
 
+final _auth = FirebaseAuth.instance;
+final _formKey = GlobalKey<FormState>();
+
 class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+  SignInPage({Key? key}) : super(key: key);
 
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final _formKey = GlobalKey<FormState>();
-
   final TextEditingController nameController = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
@@ -22,6 +24,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     final nameField = TextFormField(
+      key: _formKey,
       autofocus: false,
       controller: nameController,
       keyboardType: TextInputType.name,
@@ -54,6 +57,7 @@ class _SignInPageState extends State<SignInPage> {
     );
 
     final emailField = TextFormField(
+      key: _formKey,
       obscureText: true,
       style: const TextStyle(color: Colors.white),
       autofocus: false,
@@ -89,6 +93,7 @@ class _SignInPageState extends State<SignInPage> {
     );
 
     final passwordField = TextFormField(
+      key: _formKey,
       style: const TextStyle(color: Colors.white),
       autofocus: false,
       controller: passwordController,
@@ -256,5 +261,20 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
     );
+  }
+}
+
+void signIn(String email, String password) async {
+  if (_formKey.currentState!.validate()) {
+    await _auth
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((value) => {
+              print("SignUp Successful"),
+
+              // Navigate to login page
+            })
+        .catchError((e) {
+      print(e.toString());
+    });
   }
 }

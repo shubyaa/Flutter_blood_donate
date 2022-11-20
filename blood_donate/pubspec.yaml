@@ -51,6 +51,7 @@ dependencies:
   permission_handler: ^10.2.0  # requires android 33 or higher
 
   share_plus: ^6.0.1
+  firebase_auth: ^4.1.2
 
 dev_dependencies:
   flutter_test:

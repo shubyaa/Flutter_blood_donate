@@ -5,18 +5,17 @@ import 'package:blood_donate/home.dart';
 import 'package:blood_donate/main/main_screen.dart';
 import 'package:blood_donate/main/page_router.gr.dart';
 import 'package:blood_donate/maps.dart';
-import 'package:blood_donate/profile.dart';
 import 'package:blood_donate/settings.dart';
 import 'package:blood_donate/subpages/myHistory.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-const routeHome = '/home';
-const routeMaps = '/maps';
-const routeSettings = '/settings';
-const routeProfile = '/profile';
-const routePeople = '/people';
-const routeHistory = '/history';
+// const routeHome = '/home';
+// const routeMaps = '/maps';
+// const routeSettings = '/settings';
+// const routeProfile = '/profile';
+// const routePeople = '/people';
+// const routeHistory = '/history';
 
 void main() {
   runApp(MyApp());

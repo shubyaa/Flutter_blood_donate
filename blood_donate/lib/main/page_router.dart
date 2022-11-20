@@ -3,6 +3,7 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:blood_donate/addPeople.dart';
 import 'package:blood_donate/home.dart';
 import 'package:blood_donate/main/main_screen.dart';
+import 'package:blood_donate/main/sign_in.dart';
 import 'package:blood_donate/maps.dart';
 import 'package:blood_donate/personal_details.dart';
 import 'package:blood_donate/profile.dart';
@@ -23,7 +24,7 @@ import 'package:blood_donate/subpages/myHistory.dart';
     AutoRoute(
       initial: true,
       path: '/',
-      page: MainScreen,
+      page: SignInPage,
       children: [
         AutoRoute(
           path: 'home',
