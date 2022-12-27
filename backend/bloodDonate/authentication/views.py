@@ -21,7 +21,9 @@ from .serializers import UserModelSerializer
 #   "email" : "sheet@gmail.com",
 #   "phone" : "845978965",
 #   "blood_group" : "AB+",
-#   "gender" : "F"
+#   "gender" : "F",
+#   "username" : "shubham",
+#   "password" : "sameer@12"
 # }
 
 def hello(request):
@@ -105,8 +107,15 @@ class UserModelGetUpdates(APIView):
         return Response({"status":"success", "data":serializer.data}, status=status.HTTP_200_OK)
 
 
+# @permission_classes((permissions.AllowAny,))
+# class UpdateUSerModel(APIView):
+#     def
+
 @permission_classes((permissions.AllowAny,))    
 class UserModelView(APIView):
+    
+    def update(self, request):
+        return Response({'status':'high'},status=status.HTTP_100_CONTINUE)
     
     def get(self, request, *args, **kwargs):
         result = UserModel.objects.filter(is_superuser=0)
@@ -137,9 +146,10 @@ class UserModelView(APIView):
                 user = UserModel.objects.get(email = serializer.validated_data.get('email'))
                 token_obj, _ = Token.objects.get_or_create(user=user)
                 
+            
                 
                 
-                return Response({'status':'success','data':serializer.data, 'token':token_obj}, status=status.HTTP_201_CREATED)
+                return Response({'status':'success','data':serializer.data, 'token':str(token_obj)}, status=status.HTTP_201_CREATED)
         else:
             return Response({'status':'failure', 'data':serializer.errors, 'token':''}, status=status.HTTP_404_NOT_FOUND)
         

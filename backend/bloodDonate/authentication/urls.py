@@ -9,5 +9,7 @@ urlpatterns = [
     path('token/', view=auth_views.obtain_auth_token),
     
     path('login/', view=views.UserLogin.as_view()),
-    path('logout/', view=views.logout)
+    path('logout/', view=views.logout),
+    
+    # path('update/', view=views.UpdateUserModel.as_view())
 ]

@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from .models import UserModel
 
+class ChangePasswordSerializer(serializers.ModelSerializer):
+    old_password = serializers.CharField(max_length=50, required=True)
+    new_password = serializers.CharField(max_length=50, required=True)
+
 class UserModelSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(max_length=50, required=True)
     last_name = serializers.CharField(max_length=50, required=True)
@@ -8,7 +12,6 @@ class UserModelSerializer(serializers.ModelSerializer):
     phone = serializers.CharField(max_length=12, required=True)
     blood_group = serializers.CharField(required=True)
     gender = serializers.CharField(required=True)
-    token = serializers.CharField(required=False)
     
     
     class Meta:
@@ -23,7 +26,6 @@ class UserModelSerializer(serializers.ModelSerializer):
             "blood_group",
             "gender",
             "password",
-            "token",
             ]
         
     def create(self, validated_data):
