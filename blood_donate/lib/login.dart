@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final emailField = TextFormField(
-      obscureText: true,
+      obscureText: false,
       style: const TextStyle(color: Colors.white),
       autofocus: false,
       controller: emailController,
@@ -75,6 +75,13 @@ class _LoginPageState extends State<LoginPage> {
         prefixIcon: const Icon(
           Icons.lock,
           color: Color.fromRGBO(139, 227, 216, 1.0),
+        ),
+        suffixIcon: IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.remove_red_eye,
+            color: Color.fromRGBO(139, 227, 216, 1.0),
+          ),
         ),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Password",

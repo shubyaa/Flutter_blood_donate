@@ -18,12 +18,12 @@ import 'package:flutter/material.dart' as _i11;
 
 import '../addPeople.dart' as _i4;
 import '../home.dart' as _i3;
+import '../login.dart' as _i1;
 import '../maps.dart' as _i6;
 import '../personal_details.dart' as _i5;
 import '../profile.dart' as _i8;
 import '../settings.dart' as _i7;
 import '../subpages/myHistory.dart' as _i9;
-import 'sign_in.dart' as _i1;
 
 class AppRouter extends _i10.RootStackRouter {
   AppRouter([_i11.GlobalKey<_i11.NavigatorState>? navigatorKey])
@@ -31,12 +31,10 @@ class AppRouter extends _i10.RootStackRouter {
 
   @override
   final Map<String, _i10.PageFactory> pagesMap = {
-    SignInRoute.name: (routeData) {
-      final args = routeData.argsAs<SignInRouteArgs>(
-          orElse: () => const SignInRouteArgs());
+    LoginRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i1.SignInPage(key: args.key),
+        child: const _i1.LoginPage(),
       );
     },
     HomeRouter.name: (routeData) {
@@ -114,13 +112,13 @@ class AppRouter extends _i10.RootStackRouter {
   @override
   List<_i10.RouteConfig> get routes => [
         _i10.RouteConfig(
-          SignInRoute.name,
+          LoginRoute.name,
           path: '/',
           children: [
             _i10.RouteConfig(
               HomeRouter.name,
               path: 'home',
-              parent: SignInRoute.name,
+              parent: LoginRoute.name,
               children: [
                 _i10.RouteConfig(
                   HomePageRouter.name,
@@ -144,7 +142,7 @@ class AppRouter extends _i10.RootStackRouter {
             _i10.RouteConfig(
               MapsRouter.name,
               path: 'maps',
-              parent: SignInRoute.name,
+              parent: LoginRoute.name,
               children: [
                 _i10.RouteConfig(
                   MapsRoute.name,
@@ -156,7 +154,7 @@ class AppRouter extends _i10.RootStackRouter {
             _i10.RouteConfig(
               SettingsRouter.name,
               path: 'settings',
-              parent: SignInRoute.name,
+              parent: LoginRoute.name,
               children: [
                 _i10.RouteConfig(
                   SettingsRoute.name,
@@ -207,7 +205,7 @@ class AppRouter extends _i10.RootStackRouter {
             _i10.RouteConfig(
               ProfileRouter.name,
               path: 'profile',
-              parent: SignInRoute.name,
+              parent: LoginRoute.name,
               children: [
                 _i10.RouteConfig(
                   ProfileRoute.name,
@@ -244,30 +242,16 @@ class AppRouter extends _i10.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.SignInPage]
-class SignInRoute extends _i10.PageRouteInfo<SignInRouteArgs> {
-  SignInRoute({
-    _i12.Key? key,
-    List<_i10.PageRouteInfo>? children,
-  }) : super(
-          SignInRoute.name,
+/// [_i1.LoginPage]
+class LoginRoute extends _i10.PageRouteInfo<void> {
+  const LoginRoute({List<_i10.PageRouteInfo>? children})
+      : super(
+          LoginRoute.name,
           path: '/',
-          args: SignInRouteArgs(key: key),
           initialChildren: children,
         );
 
-  static const String name = 'SignInRoute';
-}
-
-class SignInRouteArgs {
-  const SignInRouteArgs({this.key});
-
-  final _i12.Key? key;
-
-  @override
-  String toString() {
-    return 'SignInRouteArgs{key: $key}';
-  }
+  static const String name = 'LoginRoute';
 }
 
 /// generated route for

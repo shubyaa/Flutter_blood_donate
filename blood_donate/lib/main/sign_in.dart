@@ -5,7 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:blood_donate/app_widgets.dart';
 
 final _auth = FirebaseAuth.instance;
-final _formKey = GlobalKey<FormState>();
+// final List<GlobalObjectKey<FormState>> formKeyList =
+//     List.generate(1, (index) => GlobalObjectKey<FormState>(index));
+
+final formKey1 = GlobalKey<FormState>();
+final formKey2 = GlobalKey<FormState>();
+final formKey3 = GlobalKey<FormState>();
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key? key}) : super(key: key);
@@ -15,17 +20,18 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final TextEditingController nameController = new TextEditingController();
-  final TextEditingController emailController = new TextEditingController();
-  final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
-      new TextEditingController();
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final nameField = TextFormField(
-      key: _formKey,
+      key: formKey1,
       autofocus: false,
+      style: const TextStyle(color: Colors.white),
       controller: nameController,
       keyboardType: TextInputType.name,
       validator: (value) {
@@ -57,8 +63,8 @@ class _SignInPageState extends State<SignInPage> {
     );
 
     final emailField = TextFormField(
-      key: _formKey,
-      obscureText: true,
+      key: formKey2,
+      obscureText: false,
       style: const TextStyle(color: Colors.white),
       autofocus: false,
       cursorColor: Colors.white,
@@ -93,7 +99,7 @@ class _SignInPageState extends State<SignInPage> {
     );
 
     final passwordField = TextFormField(
-      key: _formKey,
+      key: formKey3,
       style: const TextStyle(color: Colors.white),
       autofocus: false,
       controller: passwordController,
@@ -115,6 +121,13 @@ class _SignInPageState extends State<SignInPage> {
         prefixIcon: const Icon(
           Icons.lock,
           color: Color.fromRGBO(139, 227, 216, 1.0),
+        ),
+        suffixIcon: IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.remove_red_eye,
+            color: Color.fromRGBO(139, 227, 216, 1.0),
+          ),
         ),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Password",
@@ -144,6 +157,13 @@ class _SignInPageState extends State<SignInPage> {
           prefixIcon: const Icon(
             Icons.lock,
             color: Color.fromRGBO(139, 227, 216, 1.0),
+          ),
+          suffixIcon: IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.remove_red_eye,
+              color: Color.fromRGBO(139, 227, 216, 1.0),
+            ),
           ),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Confirm Password",
@@ -265,7 +285,7 @@ class _SignInPageState extends State<SignInPage> {
 }
 
 void signIn(String email, String password) async {
-  if (_formKey.currentState!.validate()) {
+  if (formKey2.currentState!.validate() && formKey3.currentState!.validate()) {
     await _auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) => {
